@@ -1,0 +1,47 @@
+
+<table class="table table-hover" *ngIf="products.length>0; else productEmpty">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>CATEGORY</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>STATUS</th>
+        <th colspan="2" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr  *ngFor="let product of products">
+        <td>{{product.id}}</td>
+        <td>{{product.category}}</td>
+        <td>{{product.name}}</td>
+        <td>{{product.price}}</td>
+        <td><button class="btn btn-outline-success"
+            (click)="handleChecked(product)"
+            >
+            <i [class]="product.checked ?'bi bi-check':'bi bi-circle'"></i>
+
+        </button></td>
+        <td><button class="btn btn-outline-danger"
+            (click)="handleDeleteProduct(product)"
+            >
+            <i class="bi bi-trash"></i>
+
+        </button></td>
+        <td><button class="btn btn-outline-info"
+            (click)="handleEditProduct(product)"
+            >
+            <i class="bi bi-pencil"></i>
+
+        </button></td>
+
+      </tr>
+      
+    </tbody>
+  </table>
+  <ng-template #productEmpty>
+    <div class="alert alert-primary" role="alert">
+       <p class="text-center">Rien a afficher</p>
+      </div>
+  </ng-template>
+
